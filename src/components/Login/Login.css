@@ -5,7 +5,7 @@
 	width: 100%;
 	min-height: 100vh;
 	background: #222 url('../../assets/timg.jpg') 0/cover fixed;
-	padding-top: 20vh;
+	padding-top: 30vh;
 	/*align-items: center;
 	justify-content: center;*/
 }
@@ -38,14 +38,16 @@
     width: 100%;
 }
 
-
+.code {
+	height: 28px;
+	float: right;
+}
 
 .content {
 	margin: 0 auto;
   background: white;
   display: block;
   width: 380px;
-  height: 260px;
   min-width: 380px;
   min-height: 260px;
   padding: 16px;

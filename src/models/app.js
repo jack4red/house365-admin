@@ -8,11 +8,13 @@ import {createUser} from '../services/user';
 import {routerRedux} from 'dva/router';
 import {userTokenKey} from '../utils/constant';
 import {message} from 'antd';
+import {yanzhmaCode} from '../utils/constant.js';
 
 export default {
     namespace: 'app',
     state: {
         isLogin: false,
+        codeImgUrl:yanzhmaCode,
         account: {
             username: null,
             ability: null,
@@ -117,6 +119,13 @@ export default {
                     email: null
                 }
             };
+        },
+        changeCodeImgUrl: function(state) {
+            const newCodeImgUrl = state.codeImgUrl + '?' + Math.random();
+            return {
+                ...state,
+                codeImgUrl:newCodeImgUrl
+            }
         }
     }
 

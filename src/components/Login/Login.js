@@ -2,18 +2,21 @@ import React from 'react';
 import styles from './Login.css';
 import {Link} from 'dva/router';
 import {connect} from 'dva';
-import {Form, Icon, Input, Button, Checkbox, Layout} from 'antd';
+import {Form, Icon, Input, Button, Checkbox, Layout, Row, Col} from 'antd';
 const {Content} = Layout;
 import blogLogo from '../../assets/haipa.gif';
+import yanzhmaCode from '../../utils/constant.js';
 
 function Login({
     loading,
+    codeImgUrl,
     dispatch,
     form:{
         getFieldDecorator,
         validateFields
     }
 }) {
+	// console.log(codeImgUrl);
     function commit(data) {
         const {username, password} = data;
         dispatch({type: 'app/auth', payload: {username, password}});
@@ -27,6 +30,10 @@ function Login({
                 commit(values);
             }
         });
+    }
+
+    function handleClickCode(e) {
+    	dispatch({type: 'app/changeCodeImgUrl', payload: {}});
     }
 
     return (
@@ -63,6 +70,26 @@ function Login({
 	                        }
 	                    </Form.Item>
 	                    <Form.Item>
+	                        {
+	                            getFieldDecorator('code', {
+	                                rules: [
+	                                    {
+	                                        required: true,
+	                                        message: 'Please input your code!'
+	                                    }
+	                                ]
+	                            })(<Row>
+	                            	<Col span={17}>
+	                            		<Input addonBefore={<Icon type="code-o"/>} type="code" placeholder="Code" />
+	                            	</Col>
+									<Col span={6} push={1} >
+										<img src={codeImgUrl} className={styles.code} onClick={handleClickCode}/>
+									</Col>
+	                            </Row>
+	                            )
+	                        }
+	                    </Form.Item>
+	                    <Form.Item>
 	                        <Button
 	                            type="primary"
 	                            htmlType="submit"
@@ -82,5 +109,6 @@ function Login({
 export default connect((state, ownProps) => {
     return {
         loading: state.loading.models.app,
+        codeImgUrl: state.app.codeImgUrl,
     };
 })(Form.create({})(Login));
