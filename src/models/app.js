@@ -20,7 +20,17 @@ export default {
             user_id: null
         }
     },
-    subscriptions: {},
+    subscriptions: {
+        setup({ dispatch, history }) {
+            history.listen(({ pathname }) => {
+                if (pathname !== '/login') {
+                    dispatch({
+                        type: 'checkToken',
+                    });
+                }
+            });
+        }
+    },
     effects: {
         auth: function *({payload}, {call, put}) {
             const {username, password, code} = payload;
@@ -45,11 +55,6 @@ export default {
                 message.error(`${error.message}, Something wierd..`);
             }
         },
-        enterAuth: function*({payload, onComplete}, {put, take}) {
-            yield [put({type: 'checkToken'})];
-            yield [take('app/hasToken'), take('app/queryUserSuccess')];
-            onComplete();
-        },
         checkToken: function*({payload}, {put, call, select}) {
             // get the token from local storage.
             var strStorage = window.localStorage.getItem(userTokenKey);
@@ -58,7 +63,6 @@ export default {
                 if (data.success) {
                     yield put({type: 'hasToken',payload: {role:data.role}});
                 } else {
-                    yield put({type: 'authFail'});
                     yield put({type: 'logout'});
                 }
             } else {
@@ -69,26 +73,7 @@ export default {
             yield put({type: 'authFail'});
             window.localStorage.removeItem(userTokenKey);
             yield put(routerRedux.push('/login'));
-        },
-        // queryUser: function *({payload}, {put, call}) {
-        //     const {data} = yield call(checkToken);
-        //     if (data) {
-        //         yield put({
-        //             type: 'queryUserSuccess',
-        //             payload: {role: data}
-        //         });
-        //     }
-        // },
-        // register: function *({payload}, {put, call}) {
-        //     const {username, email, password} = payload;
-        //     const {data} = yield call(createUser, {username, email, password});
-        //     if (data) {
-        //         yield put({
-        //             type: 'auth',
-        //             payload: {username, password}
-        //         });
-        //     }
-        // }
+        }
     },
     reducers: {
         authSuccess: function (state, {payload}) {
@@ -107,13 +92,6 @@ export default {
                 isLogin: true
             };
         },
-        // queryUserSuccess: function (state, {payload}) {
-        //     const {account} = payload;
-        //     return {
-        //         ...state,
-        //         account
-        //     };
-        // },
         authFail: function (state) {
             return {
                 ...state,

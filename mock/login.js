@@ -16,30 +16,37 @@ module.exports = {
             var obj = qs.parse(formData);
             if (obj.username == 'admin' && obj.password == 'admin') {
                 var data = mockjs.mock({
-                    "role": "admin",
+                    "role": {
+                        username: "admin",
+                        user_id: 123
+                    },
                     "token": "asdfsfs123132132sdfds"
                 });
                 res.json({
-                    success: true,
-                    data: data
+                    "success": true,
+                    "data": data
                 });
             } else {
                 var data = mockjs.mock({});
                 res.json({
-                    success: false,
-                    data: data
+                    "success": false,
+                    "data": data
                 });
             }
         })
     },
     'GET /api/login' (req, res) {
-        if(req.headers.token){
+        if (req.headers.token) {
             res.json({
-                success: false
+                "role": {
+                    username: "admin",
+                    user_id: 123
+                },
+                "success": true
             });
         } else {
             res.json({
-                success: true
+                "success": false
             });
         }
     }

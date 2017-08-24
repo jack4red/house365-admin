@@ -1,7 +1,6 @@
 import React, {PropTypes} from 'react';
 import {Layout, Menu, Breadcrumb, Icon, BackTop, Affix} from 'antd';
 import {Link} from 'dva/router';
-// import LogoImg from '../../assets/dog_48px_1182381_easyicon.net.png';
 import styles from './MainLayout.css';
 import UserInfo from './UserInfo/UserInfo';
 const {Header, Content, Footer} = Layout;
@@ -9,7 +8,7 @@ const {Header, Content, Footer} = Layout;
 const MainLayout = ({
     routes,
     params,
-    account,
+    role,
     children,
     handleClickLogOut
 }) => {
@@ -19,9 +18,8 @@ const MainLayout = ({
                 <Header className={styles.header}>
                     <div className={styles.mainContainer}>
                         <div className={styles.logo}>
-                            // <img src={LogoImg} alt="my blog!"/>
                         </div>
-                        <UserInfo account={account} handleClickLogOut={handleClickLogOut}/>
+                        <UserInfo role={role} handleClickLogOut={handleClickLogOut}/>
                         <Menu mode="horizontal" defaultSelectedKeys={['1']} className={styles.menu}>
                             <Menu.Item key="1">
                                 <Link to="/posts">
@@ -29,7 +27,7 @@ const MainLayout = ({
                                 </Link>
                             </Menu.Item>
                             <Menu.Item key="2">
-                                <Link to={`/user/${account.user_id}`}>
+                                <Link to={`/user/${role.user_id}`}>
                                     <Icon type="user" className={styles.icon}/>User
                                 </Link>
                             </Menu.Item>

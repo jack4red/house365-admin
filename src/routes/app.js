@@ -9,28 +9,32 @@ const App = ({
     routes,
     params,
     isLogin,
-    account
+    role
 }) => {
     const mainLayoutProps = {
         routes,
         params,
-        account,
+        role,
         handleClickLogOut: function (e) {
             e.preventDefault();
             message.success('Log out successfully :)');
             dispatch({type: 'app/logout'});
         }
     };
-
-    return isLogin ? <MainLayout {...mainLayoutProps}>{children}</MainLayout> : <div/>
+    if (isLogin) {
+        return <MainLayout {...mainLayoutProps}>{children}</MainLayout>
+    } else {
+        return <div/>
+    }
+    // return isLogin ? <MainLayout {...mainLayoutProps}>{children}</MainLayout> : <div/>
 };
 
 App.propTypes = {
-    children: PropTypes.element.isRequired,
+    // children: PropTypes.element.isRequired,
     isLogin: PropTypes.bool.isRequired,
     routes: PropTypes.array.isRequired,
     params: PropTypes.object.isRequired,
-    account: PropTypes.object.isRequired,
+    role: PropTypes.object.isRequired,
     dispatch: PropTypes.func.isRequired
 };
 
@@ -39,6 +43,6 @@ export default connect((state, ownProps) => {
     return {
         loading: state.loading.models.app,
         isLogin: state.app.isLogin,
-        account: state.app.account
+        role: state.app.role
     };
 })(App);

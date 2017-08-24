@@ -3,10 +3,10 @@ import styles from './UserInfo.css';
 import {Tooltip, Button} from 'antd';
 
 const UserInfo = ({
-    account,
+    role,
     handleClickLogOut
 }) => {
-    const {ability, username} = account;
+    const {ability, username} = role;
     const tooltipProps = {
         placement: 'bottom',
         title: ability === 'super' ? 'Super Admin' : 'Normal Admin',
@@ -24,7 +24,7 @@ const UserInfo = ({
 };
 
 UserInfo.propTypes = {
-    account: PropTypes.object.isRequired,
+    role: PropTypes.object.isRequired,
     handleClickLogOut: PropTypes.func.isRequired
 };
 
