@@ -2,15 +2,12 @@ import dva from 'dva';
 import './index.css';
 import createLoading from 'dva-loading';
 import {userTokenKey} from './utils/constant';
-
-const data = localStorage.getItem(userTokenKey);
-const initialState = data ? JSON.parse(data) : {};
+import {message} from 'antd';
 
 const app = dva({
-	initialState,
 	onError(e, dispatch) {
         dispatch({type: 'app/logout'});
-        console.log(e);
+        console.warn(e);
         if (e.message === 'Unauthorized') {
             message.info('Please Login :)', 5);
         } else {

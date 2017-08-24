@@ -1,4 +1,5 @@
 import fetch from 'dva/fetch';
+import {userTokenKey} from './constant.js';
 
 function parseJSON(response) {
   return response.json();
@@ -22,6 +23,17 @@ function checkStatus(response) {
  * @return {object}           An object containing either "data" or "err"
  */
 export default function request(url, options) {
+  var strStorage = window.localStorage.getItem(userTokenKey);
+  if (strStorage){
+    var {token} = JSON.parse(strStorage);
+    if (options.headers) {
+      options.headers.append('Token',`Bearer ${token}`)
+    } else {
+      options.headers = new Headers({
+        "Token": `Bearer ${token}`
+      })
+    }
+  }
   return fetch(url, options)
     .then(checkStatus)
     .then(parseJSON)

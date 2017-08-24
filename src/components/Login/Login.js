@@ -18,8 +18,8 @@ function Login({
 }) {
 	// console.log(codeImgUrl);
     function commit(data) {
-        const {username, password} = data;
-        dispatch({type: 'app/auth', payload: {username, password}});
+        const {username, password, code} = data;
+        dispatch({type: 'app/auth', payload: {username, password, code}});
     }
 
 

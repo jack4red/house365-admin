@@ -3,6 +3,8 @@ import { Router, Route, routerRedux, IndexRoute, IndexRedirect } from 'dva/route
 import Login from './components/Login/Login';
 import App from './routes/app';
 
+import UserCenter from "./routes/UserCenter/UserCenter";
+
 function RouterConfig({ history,app }) {
 	function requireAuth(nextState, replace, callback) {
         app._store.dispatch({
@@ -55,6 +57,8 @@ function RouterConfig({ history,app }) {
         <Router history={history}>
             <Route path="/login" component={Login} />
             <Route path="/" component={App} onEnter={requireAuth}>
+                <IndexRedirect to="usercenter"/>
+                <Route path="/usercenter" component={UserCenter} />
             </Route>
             <Route path="*" breadcrumbName="Not Found" component={props => <h1>Oops! Not Found</h1>}/>
         </Router>
