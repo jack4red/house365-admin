@@ -12,9 +12,11 @@ const UserInfo = ({
         <div className={styles.user}>
             <span className={styles.mr}>{username}</span>
             <Tooltip placement="bottom" title="修改密码">
-                <Button icon="reload" ghost onClick={handleClickLogOut} title="修改密码" className={styles.mr}></Button>
+                <Button icon="reload" type="primary" ghost onClick={handleClickLogOut} title="修改密码" className={styles.mr}></Button>
             </Tooltip>
-            <Button icon="logout" type="primary" onClick={handleClickLogOut}>退出系统</Button>
+            <Tooltip placement="bottom" title="退出系统">
+                <Button icon="logout" type="danger" onClick={handleClickLogOut} title="退出系统"></Button>
+            </Tooltip>
         </div>
     );
 };

@@ -39,7 +39,6 @@
 	background: #fff;
 	padding: 24px;
 	margin: 0;
-	min-height: calc(100% - 42px);
-	/*min-height: 280px;*/
+	min-height: 380px;
 	/*height: calc(100% - 42px);*/
 }
