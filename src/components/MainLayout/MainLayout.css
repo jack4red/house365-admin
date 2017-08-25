@@ -6,6 +6,20 @@
 
 }
 
+.sider{
+	background: #fff;
+	float:left;
+	height:100%;
+	position: fixed;
+    overflow-y: auto;
+}
+
+.rightlayout{
+	padding: 0 24px 24px;
+	margin-left: 200px;
+	height: 100%;
+}
+
 .userinfo{
 	float: right;
 	color: white;
@@ -15,4 +29,17 @@
 	float: left;
 	color: white;
 	font-size: 20px;
+}
+
+.mainlayout{
+	height: calc(100vh - 64px);
+}
+
+.page{
+	background: #fff;
+	padding: 24px;
+	margin: 0;
+	min-height: calc(100% - 42px);
+	/*min-height: 280px;*/
+	/*height: calc(100% - 42px);*/
 }

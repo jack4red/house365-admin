@@ -21,8 +21,8 @@ const MainLayout = ({
                     <UserInfo role={role} handleClickLogOut={handleClickLogOut}/>
                 </div>
             </Header>
-            <Layout>
-                <Sider width={200} style={{ background: '#fff' }}>
+            <Layout className={styles.mainlayout}>
+                <Sider width={200} className={styles.sider}>
                     <Menu
                     mode="inline"
                     defaultSelectedKeys={['1']}
@@ -49,13 +49,13 @@ const MainLayout = ({
                         </SubMenu>
                     </Menu>
                 </Sider>
-                <Layout style={{ padding: '0 24px 24px' }}>
+                <Layout className={styles.rightlayout}>
                     <Breadcrumb style={{ margin: '12px 0' }}>
                         <Breadcrumb.Item>Home</Breadcrumb.Item>
                         <Breadcrumb.Item>List</Breadcrumb.Item>
                         <Breadcrumb.Item>App</Breadcrumb.Item>
                     </Breadcrumb>
-                    <Content style={{ background: '#fff', padding: 24, margin: 0, minHeight: 280 }}>
+                    <Content className={styles.page}>
                         Content
                     </Content>
                 </Layout>

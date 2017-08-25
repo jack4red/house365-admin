@@ -6,19 +6,15 @@ const UserInfo = ({
     role,
     handleClickLogOut
 }) => {
-    const {ability, username} = role;
-    const tooltipProps = {
-        placement: 'bottom',
-        title: ability === 'super' ? 'Super Admin' : 'Normal Admin',
-    };
+    const {username} = role;
 
     return (
         <div className={styles.user}>
-            <Tooltip {...tooltipProps}>
-                <span>Hello, <em className={styles.username}>{username} !</em>
-            </span>
+            <span className={styles.mr}>{username}</span>
+            <Tooltip placement="bottom" title="修改密码">
+                <Button icon="reload" ghost onClick={handleClickLogOut} title="修改密码" className={styles.mr}></Button>
             </Tooltip>
-            <Button icon="logout" type="primary" onClick={handleClickLogOut}>Logout!</Button>
+            <Button icon="logout" type="primary" onClick={handleClickLogOut}>退出系统</Button>
         </div>
     );
 };
