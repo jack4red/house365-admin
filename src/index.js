@@ -3,6 +3,7 @@ import './index.css';
 import createLoading from 'dva-loading';
 import {userTokenKey} from './utils/constant';
 import {message} from 'antd';
+import "babel-polyfill";
 
 const app = dva({
 	onError(e, dispatch) {

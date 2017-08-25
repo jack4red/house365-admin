@@ -1,3 +1,18 @@
 
 .normal {
 }
+
+.header{
+
+}
+
+.userinfo{
+	float: right;
+	color: white;
+}
+
+.logo{
+	float: left;
+	color: white;
+	font-size: 20px;
+}

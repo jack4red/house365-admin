@@ -3,7 +3,8 @@ import {Layout, Menu, Breadcrumb, Icon, BackTop, Affix} from 'antd';
 import {Link} from 'dva/router';
 import styles from './MainLayout.css';
 import UserInfo from './UserInfo/UserInfo';
-const {Header, Content, Footer} = Layout;
+const {Header, Content, Footer, Sider} = Layout;
+const { SubMenu } = Menu;
 
 const MainLayout = ({
     routes,
@@ -13,52 +14,52 @@ const MainLayout = ({
     handleClickLogOut
 }) => {
     return (
-        <Layout className={styles.layoutContainer}>
-            <Affix offsetTop={0}>
-                <Header className={styles.header}>
-                    <div className={styles.mainContainer}>
-                        <div className={styles.logo}>
-                        </div>
-                        <UserInfo role={role} handleClickLogOut={handleClickLogOut}/>
-                        <Menu mode="horizontal" defaultSelectedKeys={['1']} className={styles.menu}>
-                            <Menu.Item key="1">
-                                <Link to="/posts">
-                                    <Icon type="file-text" className={styles.icon}/>Posts
-                                </Link>
-                            </Menu.Item>
-                            <Menu.Item key="2">
-                                <Link to={`/user/${role.user_id}`}>
-                                    <Icon type="user" className={styles.icon}/>User
-                                </Link>
-                            </Menu.Item>
-                        </Menu>
-                    </div>
-                </Header>
-            </Affix>
-            <Content className={styles.content}>
-                <div className={styles.mainContainer}>
-                    <div className={styles.mainContent}>
-                        <Breadcrumb
-                            routes={routes}
-                            params={params}
-                            itemRender={(route, params, routes, paths) => {
-                                const last = routes.indexOf(route) === routes.length - 1;
-                                return last
-                                    ? <span>
-                                        <Icon type={route.icon} className={styles.icon}/>{route.breadcrumbName}</span>
-                                    : <Link to={paths.join('/')}>
-                                        <Icon type={route.icon} className={styles.icon}/>{route.breadcrumbName}
-                                    </Link>
-                            }}
-                            className={styles.breadcrumb}/>
-                        {children}
-                    </div>
+        <Layout>
+            <Header className={styles.header}>
+                <div className={styles.logo}>按揭管理系统</div>
+                <div className={styles.userinfo}>
+                    <UserInfo role={role} handleClickLogOut={handleClickLogOut}/>
                 </div>
-            </Content>
-            <Footer className={styles.footer}>
-                Heskey Baozi, 15331097
-            </Footer>
-            <BackTop className={styles.backTop}/>
+            </Header>
+            <Layout>
+                <Sider width={200} style={{ background: '#fff' }}>
+                    <Menu
+                    mode="inline"
+                    defaultSelectedKeys={['1']}
+                    defaultOpenKeys={['sub1']}
+                    style={{ height: '100%', borderRight: 0 }}
+                    >
+                        <SubMenu key="sub1" title={<span><Icon type="user" />subnav 1</span>}>
+                            <Menu.Item key="1">option1</Menu.Item>
+                            <Menu.Item key="2">option2</Menu.Item>
+                            <Menu.Item key="3">option3</Menu.Item>
+                            <Menu.Item key="4">option4</Menu.Item>
+                        </SubMenu>
+                        <SubMenu key="sub2" title={<span><Icon type="laptop" />subnav 2</span>}>
+                            <Menu.Item key="5">option5</Menu.Item>
+                            <Menu.Item key="6">option6</Menu.Item>
+                            <Menu.Item key="7">option7</Menu.Item>
+                            <Menu.Item key="8">option8</Menu.Item>
+                        </SubMenu>
+                        <SubMenu key="sub3" title={<span><Icon type="notification" />subnav 3</span>}>
+                            <Menu.Item key="9">option9</Menu.Item>
+                            <Menu.Item key="10">option10</Menu.Item>
+                            <Menu.Item key="11">option11</Menu.Item>
+                            <Menu.Item key="12">option12</Menu.Item>
+                        </SubMenu>
+                    </Menu>
+                </Sider>
+                <Layout style={{ padding: '0 24px 24px' }}>
+                    <Breadcrumb style={{ margin: '12px 0' }}>
+                        <Breadcrumb.Item>Home</Breadcrumb.Item>
+                        <Breadcrumb.Item>List</Breadcrumb.Item>
+                        <Breadcrumb.Item>App</Breadcrumb.Item>
+                    </Breadcrumb>
+                    <Content style={{ background: '#fff', padding: 24, margin: 0, minHeight: 280 }}>
+                        Content
+                    </Content>
+                </Layout>
+            </Layout>
         </Layout>
     )
 };

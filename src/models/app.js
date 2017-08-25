@@ -46,7 +46,7 @@ export default {
                         type: 'authSuccess',
                         payload: {role: role}
                     });
-                    yield put(routerRedux.push('/'));
+                    yield put(routerRedux.push('/usercenter'));
                 }else{
                     message.error('Wrong Username or Password.. :(');
                 }
