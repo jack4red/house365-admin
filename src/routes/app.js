@@ -15,14 +15,6 @@ const App = ({
         routes,
         params,
         role,
-        handleClickLogOut: function (e) {
-            e.preventDefault();
-            message.success('Log out successfully :)');
-            dispatch({type: 'app/logout'});
-        },
-        handleResetPassword:function (e) {
-            dispatch({type:'mainModal/show'});
-        }
     };
     if (isLogin) {
         return <MainLayout {...mainLayoutProps}>{children}</MainLayout>

@@ -10,16 +10,14 @@ const MainLayout = ({
     routes,
     params,
     role,
-    children,
-    handleClickLogOut,
-    handleResetPassword
+    children
 }) => {
     return (
         <Layout>
             <Header className={styles.header}>
                 <div className={styles.logo}>按揭管理系统</div>
                 <div className={styles.userinfo}>
-                    <UserInfo role={role} handleClickLogOut={handleClickLogOut} handleResetPassword={handleResetPassword} />
+                    <UserInfo role={role} />
                 </div>
             </Header>
             <Layout className={styles.mainlayout}>

@@ -14,6 +14,7 @@ export default {
     namespace: 'app',
     state: {
         isLogin: false,
+        resetModalVisible: false,
         codeImgUrl:yanzhmaCode,
         role: {
             username: null,
@@ -107,6 +108,18 @@ export default {
             return {
                 ...state,
                 codeImgUrl:newCodeImgUrl
+            }
+        },
+        showPasswordModal: function(state) {
+            return {
+                ...state,
+                resetModalVisible:true
+            }
+        },
+        hidePasswordModal: function(state) {
+            return {
+                ...state,
+                resetModalVisible:false
             }
         }
     }

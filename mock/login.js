@@ -20,7 +20,7 @@ module.exports = {
                         username: "admin",
                         user_id: 123
                     },
-                    "token": "asdfsfs123132132sdfds"
+                    "token|3": "test"
                 });
                 res.json({
                     "success": true,
