@@ -19,6 +19,9 @@ const App = ({
             e.preventDefault();
             message.success('Log out successfully :)');
             dispatch({type: 'app/logout'});
+        },
+        handleResetPassword:function (e) {
+            dispatch({type:'mainModal/show'});
         }
     };
     if (isLogin) {

@@ -11,14 +11,15 @@ const MainLayout = ({
     params,
     role,
     children,
-    handleClickLogOut
+    handleClickLogOut,
+    handleResetPassword
 }) => {
     return (
         <Layout>
             <Header className={styles.header}>
                 <div className={styles.logo}>按揭管理系统</div>
                 <div className={styles.userinfo}>
-                    <UserInfo role={role} handleClickLogOut={handleClickLogOut}/>
+                    <UserInfo role={role} handleClickLogOut={handleClickLogOut} handleResetPassword={handleResetPassword} />
                 </div>
             </Header>
             <Layout className={styles.mainlayout}>
