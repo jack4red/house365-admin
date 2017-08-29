@@ -20,8 +20,12 @@ const MainLayout = ({
             </Breadcrumb.Item>
         )
     })
+    let selectedKeyArr = [routes[routes.length - 1]['path']],openKeyArr;
     const menu = MenuData.map(function(item, index) {
         var childMenu = item.children.map(function(cItem, index) {
+            if (cItem.key === selectedKeyArr[0]) {
+                openKeyArr = [item.key];
+            }
             return (
                 <Menu.Item key={cItem.key}>
                     <Link to = {cItem.link}>{cItem.title}</Link>
@@ -46,8 +50,8 @@ const MainLayout = ({
                 <Sider width={200} className={styles.sider}>
                     <Menu
                     mode="inline"
-                    defaultSelectedKeys={['1']}
-                    defaultOpenKeys={['sub1']}
+                    defaultSelectedKeys={selectedKeyArr}
+                    defaultOpenKeys={openKeyArr}
                     style={{ height: '100%', borderRight: 0 }}
                     >
                         {menu}

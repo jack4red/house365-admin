@@ -8,12 +8,12 @@ export const MenuData = [
 			{
 				title:"usercenter",
 				link:"usercenter",
-				key:"1"
+				key:"usercenter"
 			},
 			{
 				title:"demo",
 				link:"demo",
-				key:"2"
+				key:"demo"
 			}
 		]
 	}
