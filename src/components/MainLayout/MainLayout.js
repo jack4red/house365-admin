@@ -3,6 +3,7 @@ import {Layout, Menu, Breadcrumb, Icon, BackTop, Affix} from 'antd';
 import {Link} from 'dva/router';
 import styles from './MainLayout.css';
 import UserInfo from './UserInfo/UserInfo';
+import {MenuData} from '../../utils/sidermenu';
 const {Header, Content, Footer, Sider} = Layout;
 const { SubMenu } = Menu;
 
@@ -17,6 +18,20 @@ const MainLayout = ({
             <Breadcrumb.Item key = {index}>
                 <Link to = {item.path}>{item.breadcrumbName?item.breadcrumbName:'Home'}</Link>
             </Breadcrumb.Item>
+        )
+    })
+    const menu = MenuData.map(function(item, index) {
+        var childMenu = item.children.map(function(cItem, index) {
+            return (
+                <Menu.Item key={cItem.key}>
+                    <Link to = {cItem.link}>{cItem.title}</Link>
+                </Menu.Item>
+            )
+        })
+        return (
+            <SubMenu key={item.key} title={item.title}>
+                {childMenu}
+            </SubMenu>
         )
     })
     return (
@@ -35,14 +50,7 @@ const MainLayout = ({
                     defaultOpenKeys={['sub1']}
                     style={{ height: '100%', borderRight: 0 }}
                     >
-                        <SubMenu key="sub1" title={<span><Icon type="user" />subnav 1</span>}>
-                            <Menu.Item key="1">
-                                <Link to = "usercenter">usercenter</Link>
-                            </Menu.Item>
-                            <Menu.Item key="2">
-                                <Link to = "demo">demo</Link>
-                            </Menu.Item>
-                        </SubMenu>
+                        {menu}
                     </Menu>
                 </Sider>
                 <Layout className={styles.rightlayout}>
