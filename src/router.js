@@ -11,9 +11,9 @@ function RouterConfig({ history,app }) {
             <Route path="/login" component={Login} />
             <Route path="/" component={App}>
                 <IndexRedirect to="usercenter"/>
-                <Route path="usercenter" component={UserCenter} />
+                <Route path="usercenter" component={UserCenter} breadcrumbName="usercenter" />
             </Route>
-            <Route path="*" breadcrumbName="Not Found" component={props => <h1>Oops! Not Found</h1>}/>
+            <Route path="*" component={props => <h1>Oops! Not Found</h1>}/>
         </Router>
     );
 }
