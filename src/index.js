@@ -1,11 +1,14 @@
 import dva from 'dva';
-import './index.css';
 import createLoading from 'dva-loading';
 import {userTokenKey} from './utils/constant';
 import {message} from 'antd';
+import { createHashHistory } from 'history';
+import { useRouterHistory } from 'dva/router';
 import "babel-polyfill";
+import './index.css';
 
 const app = dva({
+	history: useRouterHistory(createHashHistory)({ queryKey: false }),
 	onError(e, dispatch) {
         dispatch({type: 'app/logout'});
         console.warn(e);
@@ -23,6 +26,8 @@ app.use(createLoading({effects: true}));
 
 // 3. Model
 app.model(require('./models/app'));
+
+app.model(require("./models/demo"));
 
 // 4. Router
 app.router(require('./router'));

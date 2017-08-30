@@ -24,7 +24,7 @@ export default {
     subscriptions: {
         setup({ dispatch, history }) {
             history.listen(({ pathname }) => {
-                if (pathname !== '/login') {
+                if (pathname !== '/login' && pathname.indexOf('/') > -1) {
                     dispatch({
                         type: 'checkToken',
                     });

@@ -2,24 +2,11 @@
 import request from '../utils/request';
 import {userTokenKey} from '../utils/constant';
 
-export function createUser({username, password, email}) {
+export function usercenter({page}) {
     return request('/api/user', {
         method: 'POST',
-        headers: new Headers({
-            "Content-Type": "application/json; charset=utf-8"
-        }),
         body: JSON.stringify({
-            username, password, email
-        })
-    });
-}
-
-export function fetchUserDetail({user_id}) {
-    const token = window.localStorage.getItem(userTokenKey);
-    return request(`/api/user/${user_id}`, {
-        method: 'GET',
-        headers: new Headers({
-            "Authorization": `Bearer ${token}`
+        	page
         })
     });
 }
